@@ -12,8 +12,12 @@ class DeviceSelectionScreen extends Component {
   };
 
   createBLE = async () => {
-    const transport = await TransportWebBLE.create();
-    this.props.onSelectDevice(transport);
+    try {
+      const transport = await TransportWebBLE.create();
+      this.props.onSelectDevice(transport);
+    } catch (e) {
+      console.error(e)
+    }
   };
 
   render() {
